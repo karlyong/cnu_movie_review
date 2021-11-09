@@ -20,6 +20,15 @@ for i,one in enumerate(reveiw_list):
     #관람객 키워드 x len= 1 [리뷰정보]
     review_select = one.select('div.score_reple >p > span')[-1].get_text().strip() #strip 함수 공백제거
 
+    #review writer 수집
+    original_writer = one.select('div.score_reple em ')[0].get_text().strip()
+    idx_end = original_writer.find('(')
+    writer = original_writer[0:idx_end]
+
+    #review date 수집
+    original_date = one.select('div.score_reple em')[1].get_text()
+    date = original_date[0:11]
+
     # if len (review_select)==2:
     #     review=review_select[1].get_text()
     # elif len (review_selcet)==1:
@@ -30,5 +39,7 @@ for i,one in enumerate(reveiw_list):
     # review = review_select[j].get_text()
 
     print('SCORE==> {}'.format(score))
-    print('REVIwE==>{}'.format(review_select))
+    print('REVIEW==>{}'.format(review_select))
+    print('WRITER ==>{}'.format(writer))
+    print('DATE==>{}'.format(date))
 
